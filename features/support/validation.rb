@@ -1,11 +1,10 @@
-require 'active_support'
+
 
 module LocalHelpers
 
   
-  def validate_list(data, of: nil, count: nil)
-	  
-	response = ActiveSupport::JSON.decode(data)
+  def validate_list(response, of: nil, count: nil)
+	#puts response  
 	expect(response).to be_a_kind_of(Array)
 	expect(response.size >0).to be_truthy
 
@@ -16,7 +15,7 @@ module LocalHelpers
   end
 
   def validate_area(area_hash)
-    #puts "validating id #{area_hash["id"]}"
+    puts "validating id #{area_hash["id"]}" if area_hash["name"].include?("Россия")
     expect((area_hash["id"]=~/[1-9][0-9]*/)==0).to be_truthy
     expect(area_hash["name"]).to_not be_empty
     if (area_hash["parent_id"]) then
@@ -24,7 +23,7 @@ module LocalHelpers
     end
     if (area_hash["areas"].size>0) then
       #puts 'validation of deeper level! look out for recursion'
-      validate_list("#{ActiveSupport::JSON.encode(area_hash["areas"])}", of: 'area')
+      validate_list(area_hash["areas"], of: 'area')
     end
   end
 end
