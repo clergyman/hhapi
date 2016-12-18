@@ -10,3 +10,8 @@ Scenario: Get Area By Id
   When I send a GET request to areas resource details with id 113
   Then I should get valid area details
   And http status of the response should be 200
+
+@neg  
+Scenario: Cannot find area
+  When I send a GET request to areas resource details with id 26500
+  And http status of the response should be 404

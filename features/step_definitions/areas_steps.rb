@@ -8,7 +8,11 @@ Then /^I should get valid list of areas$/ do
 end
 
 When /^I send a GET request to (.*) resource details with id (\d+)/ do |res, id|
- @response = RestClient.get "https://api.hh.ru/#{res}/#{id}"
+  begin
+    @response = RestClient.get "https://api.hh.ru/#{res}/#{id}"
+  rescue => e
+    @response = e.response
+  end  
 end
 
 Then /^I should get valid area details$/ do

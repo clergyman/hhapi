@@ -1,7 +1,11 @@
 Given /^I send a GET request to (.*) resource with (.+?)$/ do |res, args|
-  para = parse_args args
-  @response = RestClient.get "https://api.hh.ru/#{res}", {params: para}
-  #puts @response.body
+  begin
+    para = parse_args args
+    @response = RestClient.get "https://api.hh.ru/#{res}", {params: para}
+    #puts @response.body
+  rescue => e
+    @response = e.response
+  end  
 end
 
 And /^http status of the response should be (\d+)$/ do |status|
