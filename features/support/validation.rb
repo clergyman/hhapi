@@ -1,7 +1,8 @@
-
-
 module LocalHelpers
 
+  def normalize_string(str)
+    UnicodeUtils.downcase str.squeeze(" ")
+  end
   
   def validate_list(response, of: nil, count: nil)
 	#puts response  
@@ -26,6 +27,21 @@ module LocalHelpers
       validate_list(area_hash["areas"], of: 'area')
     end
   end
+  
+  def apply_path(path, input)
+    JsonPath.on(input.to_s,path)
+  end
+  
+  def found(response)
+    puts "received parameter"
+    response["found"]
+  end
+  
+  def items_num(response)
+    response["items"].size
+  end
+  
+
 end
 
 World(LocalHelpers)

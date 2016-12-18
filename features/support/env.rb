@@ -1,3 +1,5 @@
 require 'rest-client'
 require 'rspec/expectations'
-
+require 'active_support'
+require 'jsonpath'
+require 'unicode_utils/downcase'

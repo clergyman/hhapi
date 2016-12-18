@@ -1,7 +1,4 @@
-require 'rest-client'
-require 'active_support'
-
-When /^I send a GET request to (.*) resource$/ do |res|
+When /^I send a GET request to (.*) resource without parameters$/ do |res|
   @response = RestClient.get "https://api.hh.ru/#{res}"
   #puts @response.body
 end
@@ -17,3 +14,4 @@ end
 Then /^I should get valid area details$/ do
   validate_area(ActiveSupport::JSON.decode(@response.body))
 end
+
