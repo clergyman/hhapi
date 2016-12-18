@@ -7,6 +7,6 @@ Scenario: Get Areas List
   And http status of the response should be 200
   
 Scenario: Get Area By Id  
-  When I send a GET request to areas resource with id 113
+  When I send a GET request to areas resource details with id 113
   Then I should get valid area details
   And http status of the response should be 200

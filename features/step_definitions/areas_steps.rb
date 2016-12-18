@@ -7,7 +7,7 @@ Then /^I should get valid list of areas$/ do
   validate_list(ActiveSupport::JSON.decode(@response.body), of: 'area')
 end
 
-When /^I send a GET request to (.*) resource with id (\d+)/ do |res, id|
+When /^I send a GET request to (.*) resource details with id (\d+)/ do |res, id|
  @response = RestClient.get "https://api.hh.ru/#{res}/#{id}"
 end
 
